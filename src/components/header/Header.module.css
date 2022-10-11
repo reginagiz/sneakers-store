@@ -1,0 +1,24 @@
+.header{
+    grid-area: h;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    padding-top: 50px;
+}
+.logo{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.container{
+    width: 200px;
+    height: 200px;
+}
+.women{
+    text-transform: uppercase;
+    font-size: medium;
+}
+.men{
+    text-transform: uppercase;
+    font-size: medium;
+}

@@ -1,0 +1,16 @@
+.card{
+    display: flex;
+    flex-direction: row;
+}
+.price_button{
+    display: flex;
+    flex-direction: row;
+}
+button{
+    margin-left: 180px;
+    margin-top: 10px;
+}
+.price{
+    margin-top: 10px;
+    white-space: nowrap;
+}
