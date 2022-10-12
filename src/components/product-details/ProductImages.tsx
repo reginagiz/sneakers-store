@@ -1,7 +1,7 @@
 import React from 'react';
 
 const contentStyle: React.CSSProperties = {
-    height: '700px',
+    height: '800px',
     color: '#fff',
     textAlign: 'center',
     background: '#364d79',

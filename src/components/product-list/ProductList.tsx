@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { requestProducts } from '../../store/all_products'
 import { selectProducts } from '../../store/all_products/ProductsSlise'
 import { RootState } from '../../store';
+import { Spin } from 'antd';
+
 
 const ProductList: React.FC = () => {
     const dispatch = useDispatch();
@@ -21,6 +23,7 @@ const ProductList: React.FC = () => {
 
 
     return (
+      
         <div className={st.list}>
             <div className={st.title}>
                 All sneakers</div>
@@ -38,6 +41,7 @@ const ProductList: React.FC = () => {
                 />}
             </div>
         </div>
+      
     )
 }
 

@@ -4,3 +4,101 @@
     margin-top: 50px;
     margin-left: 50px;
 }
+.carousel{
+    display: flex;
+    width: 750px;
+}
+.description{
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.title{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 0;
+}
+.gender{
+    color:gray;
+}
+div{
+    margin-bottom: 15px;
+}
+.image_cont{
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+}
+.size{
+    display: flex;
+    flex-direction: row;
+    margin-top:0;
+}
+.size_item{
+    margin: 0;
+    margin-right: 20px;
+    padding: 10px 15px;
+    background-color: white;
+}
+.size_item:focus{
+    background-color:#0088ff;
+}
+.size_item:hover{
+    background-color:rgb(211,211,211);
+}
+.busket{
+    width: 410px;
+    height: 50px;
+    display: flex;
+    margin-left: 0;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.shipping_return{
+    display: flex;
+    flex-direction: column;
+}
+.shipping{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+.return{
+    display: flex;
+    flex-direction: row;
+}
+.shipping div, .return div{
+    margin-left: 15px;
+}
+.return div{
+    margin-bottom: 0;
+}
+.shipping div p, .return div p{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.line{
+    border-top: 2px solid grey;
+}
+.price{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: medium;
+}
+.spin{
+    display: flex;
+    margin:300px 700px;
+}
+.size_chart{
+    border:none;
+    background-color: white;
+    text-transform: uppercase;
+    color:gray;
+    display: flex;
+    justify-content: flex-end;
+}
