@@ -16,8 +16,8 @@ const ProductItem: React.FC<ProductItemProps> = ({ sneaker }) => {
     <div className={st.card}>
       <Card
         hoverable
-        style={{ width: 350 }}
-        cover={<img alt="example" src={sneaker.image} />}
+        style={{ width: 350, height: 600 }}
+        cover={<img alt="example" src={sneaker.image} style={{ width: 350, height: 450 }} />}
       >
         <Meta title={sneaker.title} />
         <div className={st.price_button}>

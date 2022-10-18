@@ -6,12 +6,14 @@ type InitialState = {
   data: undefined | Sneakers;
   isLoading: boolean;
   isError: boolean;
+  gender: 'men' | 'women' | '';
 };
 
 const initialState = {
   data: undefined,
   isLoading: false,
   isError: false,
+  gender: '',
 };
 
 export const productsSlice = createSlice({
@@ -28,11 +30,15 @@ export const productsSlice = createSlice({
     requestError: (state) => {
       state.isError = true;
     },
+    changeGender: (state, action) => {
+      state.gender = action.payload;
+    },
   },
 });
 
-export const { requestStart, requestComplete, requestError } =
+export const { requestStart, requestComplete, requestError, changeGender } =
   productsSlice.actions;
 
 export default productsSlice.reducer;
 export const selectProducts = (state: RootState) => state.all_product.data;
+export const getGender = (state: RootState) => state.all_product.gender;

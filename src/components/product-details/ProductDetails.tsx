@@ -8,11 +8,10 @@ import { requestProducts } from '../../store/products_item'
 import { useParams } from 'react-router-dom';
 import ProductImages from './ProductImages';
 import st from './ProductDetails.module.css'
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import { ShoppingOutlined, ExportOutlined } from '@ant-design/icons'
 import { Spin } from 'antd';
-
-
+import ProductSize from './ProductSizeChart';
 
 const ProductDetails: React.FC = () => {
     const dispatch = useDispatch();
@@ -25,6 +24,21 @@ const ProductDetails: React.FC = () => {
     }, []);
 
     const sneak = sneaker?.[0]
+
+    const openNotification = () => {
+        notification.open({
+            message: `${sneak?.title} have been added to busket!`,
+            description:
+                <div>
+                    <div className={st.price}>{sneak?.price}</div>
+                    <div>Brand : {sneak?.brand}</div>
+                    <div>Color : {sneak?.color}</div>
+                </div>,
+            onClick: () => {
+                console.log('Notification Clicked!');
+            },
+        });
+    };
 
     return (
         <>
@@ -49,8 +63,8 @@ const ProductDetails: React.FC = () => {
                         <div className={st.title}>{sneak?.title}</div>
                         <div className={st.gender}>{sneak?.gender}</div>
                         <div className={st.price}>{sneak?.price}</div>
-                        <div>Brand :{sneak?.brand}</div>
-                        <div>Color :{sneak?.color}</div>
+                        <div>Brand : {sneak?.brand}</div>
+                        <div>Color : {sneak?.color}</div>
                         <div className={st.image_cont}>
                             <img
                                 src={sneak?.image} alt="Sneaker"
@@ -60,8 +74,9 @@ const ProductDetails: React.FC = () => {
                         <div>Size:</div>
                         <div className={st.size}>{sneak?.size.map((item: number) =>
                             <button className={st.size_item}>{item}</button>)}</div>
-                        <button className={st.size_chart}>Size chart</button>
-                        <Button type="primary" className={st.busket}>Add to busket</Button>
+                        <ProductSize />
+                        <Button type="primary" className={st.busket} onClick={openNotification}>
+                            Add to busket</Button>
                         <div className={st.shipping_return}>
                             <div className={st.shipping}>
                                 <ShoppingOutlined style={{ fontSize: '50px' }} />

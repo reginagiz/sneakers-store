@@ -8,12 +8,12 @@
 .title{
     display: flex;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 30px;
     font-size: medium;
     text-transform: uppercase;
 }
 .column{
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     margin-left: 100px;
 }
@@ -24,4 +24,8 @@
     border-top: .3rem solid black;
     width: 4rem;
     margin: 0 1rem;
+}
+.spin{
+    display: flex;
+    margin:300px 700px;
 }

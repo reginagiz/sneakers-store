@@ -2,23 +2,29 @@
     grid-area: h;
     display: flex;
     align-items: center;
-    justify-content:space-around;
+    justify-content:space-between;
     padding-top: 50px;
 }
 .logo{
     object-fit: cover;
     width: 100%;
     height: 100%;
+    
 }
 .container{
     width: 200px;
     height: 200px;
+    margin-left: 70px;
 }
-.women{
-    text-transform: uppercase;
-    font-size: medium;
+
+.button{
+    margin-right: 90px;
+    margin-top: 40px;
 }
-.men{
+.women, .men{
+    border: none;
     text-transform: uppercase;
+    background-color: inherit;
+    justify-content: center;
     font-size: medium;
 }
