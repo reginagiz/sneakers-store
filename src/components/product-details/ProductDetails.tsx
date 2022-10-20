@@ -61,7 +61,7 @@ const ProductDetails: React.FC = () => {
                     </div>
                     <div className={st.description}>
                         <div className={st.title}>{sneak?.title}</div>
-                        <div className={st.gender}>{sneak?.gender}</div>
+                        <div className={st.gender}>{sneak?.gender === 'men' ? "Men's sneakers" : "Women's sneakers"}</div>
                         <div className={st.price}>{sneak?.price}</div>
                         <div>Brand : {sneak?.brand}</div>
                         <div>Color : {sneak?.color}</div>

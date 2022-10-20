@@ -3,10 +3,10 @@ import ProductItem from './product-item';
 import st from './ProductList.module.css';
 import { List } from 'antd';
 import { Sneaker } from './types';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestProducts } from '../../store/all_products'
-import { selectProducts, getGender  } from '../../store/all_products/ProductsSlise'
+import { selectProducts, getGender, changeGender } from '../../store/all_products/ProductsSlise'
 import { RootState } from '../../store';
 import { Spin } from 'antd';
 
@@ -16,15 +16,16 @@ const ProductList: React.FC = () => {
     const sneakers = useSelector(selectProducts);
     const gender = useSelector(getGender);
     const loading = useSelector((state: RootState) => state.all_product.data);
+    const handleGender = (gender: "women" | 'men' | '') => {
+        dispatch(changeGender(gender));
+      }
 
     const filteredSneakers = gender === '' ? sneakers?.sneakers
         : sneakers?.sneakers.filter((item: Sneaker) => item.gender === gender);
 
-
     useEffect(() => {
         dispatch(requestProducts());
     }, []);
-
 
     return (
         <>
@@ -33,10 +34,9 @@ const ProductList: React.FC = () => {
                     <Spin size="large" />
                 </div>
             ) : (
-
                 <div className={st.list}>
-                    <div className={st.title} >
-                        All sneakers</div>
+                    <button className={st.title} onClick={() => handleGender("")} >
+                        All sneakers</button>
                     <div className={st.column}>
                         {filteredSneakers && <List
                             grid={{ gutter: 10, column: 3 }}

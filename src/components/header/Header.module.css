@@ -18,7 +18,7 @@
 }
 
 .button{
-    margin-right: 90px;
+    margin-right: 5em;
     margin-top: 40px;
 }
 .women, .men{
@@ -27,4 +27,12 @@
     background-color: inherit;
     justify-content: center;
     font-size: medium;
+    margin-right: 8em;
+    margin-top: 3em;
+}
+.women:hover{
+    transform: scale(1.2);
+}
+.men:hover{
+    transform: scale(1.2);
 }

@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import all_product from './all_products';
 import products_item from './products_item'
+import {cartReducer} from './busket/busketSlice'
 
 const store = configureStore({
   reducer: {
     all_product,
-    products_item
+    products_item,
+    cartReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });

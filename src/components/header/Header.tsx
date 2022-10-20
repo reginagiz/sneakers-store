@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeGender } from '../../store/all_products/ProductsSlise'
 
+
 const Header = () => {
 
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ const Header = () => {
   const handleGender = (gender: "women" | 'men' | '') => {
     dispatch(changeGender(gender));
   }
+
+  
 
   return (
     <div className={st.header}>

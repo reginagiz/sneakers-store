@@ -11,6 +11,9 @@
     padding-top: 30px;
     font-size: medium;
     text-transform: uppercase;
+    border: none;
+    background-color: inherit;
+    margin: 0;
 }
 .column{
     margin-top: 50px;
@@ -24,6 +27,9 @@
     border-top: .3rem solid black;
     width: 4rem;
     margin: 0 1rem;
+}
+.title:hover{
+    transform: scale(1.1);
 }
 .spin{
     display: flex;
