@@ -6,6 +6,8 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeGender } from '../../store/all_products/ProductsSlise'
+import { getProduct } from '../../store/busket/busketSlice';
+import { Badge } from 'antd';
 
 
 const Header = () => {
@@ -15,8 +17,16 @@ const Header = () => {
   const handleGender = (gender: "women" | 'men' | '') => {
     dispatch(changeGender(gender));
   }
-
-  
+  const cart = useSelector(getProduct)
+  const getTotalQuantity = () => {
+    let total = 0
+    cart?.forEach(item => {
+      total += item.quantity
+      console.log(item.quantity)
+    })
+    return total
+  }
+  console.log(cart)
 
   return (
     <div className={st.header}>
@@ -27,7 +37,9 @@ const Header = () => {
       </div>
       <button className={st.women} onClick={() => handleGender('women')} >For Women</button>
       <button className={st.men} onClick={() => handleGender('men')}>For Men</button>
-      <Button type="primary" shape="circle" icon={<ShoppingCartOutlined />} size='large' className={st.button} />
+      <Badge count={getTotalQuantity() || 0}>
+        <Button type="primary" shape="circle" icon={<ShoppingCartOutlined />} size='large' className={st.button} />
+      </Badge>
     </div >
   );
 };

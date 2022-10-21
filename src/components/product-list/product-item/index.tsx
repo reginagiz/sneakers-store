@@ -4,8 +4,9 @@ import { Button } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Sneaker } from '../types'
 import st from './ProductItem.module.css'
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../store/busket/busketSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const { Meta } = Card;
@@ -17,10 +18,7 @@ type ProductItemProps = {
 const ProductItem: React.FC<ProductItemProps> = ({ sneaker }) => {
 
   const dispatch = useDispatch();
-
-  const handleAddToBusket = (sneaker:Sneaker) => {
-    dispatch(addToCart(sneaker))
-  }
+  const navigate = useNavigate();
 
   return (
     <div className={st.card}>
@@ -32,8 +30,10 @@ const ProductItem: React.FC<ProductItemProps> = ({ sneaker }) => {
         <Meta title={sneaker.title} />
         <div className={st.price_button}>
           <div className={st.price}>{sneaker.price}</div>
-          <Button onClick={()=>handleAddToBusket(sneaker)}
+          <div className='shopping-cart' onClick={() => navigate('/cart')}>
+            <Button onClick={() => dispatch(addToCart(sneaker))}
             type="primary" shape="circle" icon={<ShoppingCartOutlined />} className={st.button} />
+          </div>
         </div>
       </Card>
     </div>
