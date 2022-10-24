@@ -6,7 +6,8 @@ import { Sneaker } from '../types'
 import st from './ProductItem.module.css'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../store/busket/busketSlice';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
 
 
 const { Meta } = Card;
@@ -18,22 +19,24 @@ type ProductItemProps = {
 const ProductItem: React.FC<ProductItemProps> = ({ sneaker }) => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   return (
     <div className={st.card}>
       <Card
         hoverable
         style={{ width: 350, height: 600 }}
-        cover={<img alt="example" src={sneaker.image} style={{ width: 350, height: 450 }} />}
+        cover={<NavLink to={`/sneakers-item/${sneaker.id}`}>
+          <img alt="example" src={sneaker.image} style={{ width: 350, height: 450 }} />
+        </NavLink>
+        }
       >
-        <Meta title={sneaker.title} />
-        <div className={st.price_button}>
+        <NavLink to={`/sneakers-item/${sneaker.id}`}>
+          <Meta title={sneaker.title} />
           <div className={st.price}>{sneaker.price}</div>
-          <div className='shopping-cart' onClick={() => navigate('/cart')}>
-            <Button onClick={() => dispatch(addToCart(sneaker))}
-            type="primary" shape="circle" icon={<ShoppingCartOutlined />} className={st.button} />
-          </div>
+        </NavLink>
+        <div className={st.button_cart} >
+          <Button onClick={() => dispatch(addToCart(sneaker))}
+          type="primary" shape="circle" icon={<ShoppingCartOutlined />} />
         </div>
       </Card>
     </div>

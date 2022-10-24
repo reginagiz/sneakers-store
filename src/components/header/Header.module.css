@@ -2,7 +2,7 @@
     grid-area: h;
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-around;
     padding-top: 50px;
 }
 .logo{
@@ -14,11 +14,11 @@
 .container{
     width: 200px;
     height: 200px;
-    margin-left: 70px;
+    margin-left: -20px;
 }
 
 .button{
-    margin-right: 5em;
+    margin-left: 3em;
     margin-top: 40px;
 }
 .women, .men{

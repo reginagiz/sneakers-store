@@ -18,7 +18,7 @@ const ProductList: React.FC = () => {
     const loading = useSelector((state: RootState) => state.all_product.data);
     const handleGender = (gender: "women" | 'men' | '') => {
         dispatch(changeGender(gender));
-      }
+    }
 
     const filteredSneakers = gender === '' ? sneakers?.sneakers
         : sneakers?.sneakers.filter((item: Sneaker) => item.gender === gender);
@@ -43,9 +43,7 @@ const ProductList: React.FC = () => {
                             dataSource={filteredSneakers}
                             renderItem={item => (
                                 <List.Item>
-                                    <NavLink to={`/sneakers-item/${item.id}`}>
-                                        <ProductItem sneaker={item} />
-                                    </NavLink>
+                                    <ProductItem sneaker={item} />
                                 </List.Item>
                             )}
                         />}

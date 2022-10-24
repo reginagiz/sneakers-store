@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { selectProductsItem } from '../../store/products_item/ProductsItemSlise';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { requestProducts } from '../../store/products_item'
 import { useParams } from 'react-router-dom';
 import ProductImages from './ProductImages';
@@ -12,11 +11,11 @@ import { Button, notification } from 'antd';
 import { ShoppingOutlined, ExportOutlined } from '@ant-design/icons'
 import { Spin } from 'antd';
 import ProductSize from './ProductSizeChart';
+import { addToCart } from '../../store/busket/busketSlice';
 
 const ProductDetails: React.FC = () => {
     const dispatch = useDispatch();
     const sneaker = useSelector(selectProductsItem);
-    const loading = useSelector((state: RootState) => state.products_item.data);
     const params = useParams();
 
     useEffect(() => {
@@ -33,10 +32,7 @@ const ProductDetails: React.FC = () => {
                     <div className={st.price}>{sneak?.price}</div>
                     <div>Brand : {sneak?.brand}</div>
                     <div>Color : {sneak?.color}</div>
-                </div>,
-            onClick: () => {
-                console.log('Notification Clicked!');
-            },
+                </div>
         });
     };
 
@@ -75,8 +71,10 @@ const ProductDetails: React.FC = () => {
                         <div className={st.size}>{sneak?.size.map((item: number) =>
                             <button className={st.size_item}>{item}</button>)}</div>
                         <ProductSize />
-                        <Button type="primary" className={st.busket} onClick={openNotification}>
-                            Add to busket</Button>
+                        <a onClick={() => openNotification()}>
+                            <Button type="primary" className={st.busket} onClick={() => dispatch(addToCart(sneak))}>
+                                Add to busket</Button>
+                        </a>
                         <div className={st.shipping_return}>
                             <div className={st.shipping}>
                                 <ShoppingOutlined style={{ fontSize: '50px' }} />

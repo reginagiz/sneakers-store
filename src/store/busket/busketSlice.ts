@@ -6,7 +6,7 @@ type InitialState = {
   cart: undefined | Array<ItemInCart>;
 };
 
-type ItemInCart = {
+export type ItemInCart = {
   item: Sneaker;
   quantity: number;
 };
@@ -21,14 +21,17 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const itemInCart = state.cart?.find(
-        (cartItem) => cartItem.item === action.payload.id
+        (cartItem) => cartItem.item.id === action.payload.id
       );
-      console.log(state, action);
-
-      if (itemInCart) {
+      if (itemInCart ) {
+        // state.cart = [
+        //   { item: action.payload, quantity: itemInCart.quantity + 1 },
+        // ];
         itemInCart.quantity++;
       } else {
-        state.cart?.push({ ...action.payload, quantity: 1 });
+        state.cart = state.cart
+          ? [...state.cart, { item: action.payload, quantity: 1 }]
+          : [{ item: action.payload, quantity: 1 }];
       }
     },
     incrementQuantity: (state, action) => {
@@ -61,4 +64,4 @@ export const cartSlice = createSlice({
 export const cartReducer = cartSlice.reducer;
 export const { addToCart, incrementQuantity, decrementQuantity, removeItem } =
   cartSlice.actions;
-export const getProduct = (state: RootState) => state.cartReducer.cart;
+export const getProducts = (state: RootState) => state.cart.cart;
