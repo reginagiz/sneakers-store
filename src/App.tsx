@@ -15,12 +15,9 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Header />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-        <Routes>
           <Route path="/" element={<ProductList />} />
           <Route path="/sneakers-item/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
     </div>

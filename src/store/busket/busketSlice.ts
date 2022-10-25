@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Sneaker } from '../../components/product-list/types';
 import { RootState } from '..';
 
-type InitialState = {
+ type InitialState = {
   cart: undefined | Array<ItemInCart>;
 };
 
@@ -24,9 +24,6 @@ export const cartSlice = createSlice({
         (cartItem) => cartItem.item.id === action.payload.id
       );
       if (itemInCart ) {
-        // state.cart = [
-        //   { item: action.payload, quantity: itemInCart.quantity + 1 },
-        // ];
         itemInCart.quantity++;
       } else {
         state.cart = state.cart
