@@ -15,7 +15,8 @@ export const requestProducts =
       dispatch(requestStart());
       const data: Sneakers = JSON.parse(JSON.stringify(product));
       const a = data.sneakers.filter((obj) => (obj.id == id ?  obj : undefined));
-      dispatch(requestComplete(a));
+      console.log(a[0])
+      dispatch(requestComplete(a[0]));
     } catch {
       dispatch(requestError());
     }

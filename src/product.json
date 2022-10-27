@@ -3,7 +3,7 @@
         {
             "id":1,
             "title":"Nike Air Force 1 Mid React",
-            "price": "156.226 USD",
+            "price": 156,
             "gender":"men",
             "size":[40,41,42,43,44,45],
             "brand":"Nike",
@@ -17,7 +17,7 @@
         {
             "id":2,
             "title":"Jordan Max Aura 2",
-            "price": "58,050 USD",
+            "price": 58,
             "gender":"men",
             "size":[40,41,42,43,44,45],
             "brand":"Jordan",
@@ -31,7 +31,7 @@
         {
             "id":3,
             "title":"Nike W Af1 Shadow",
-            "price": "140.226 USD",
+            "price": 140,
             "gender":"women",
             "size":[36,37,38,39,40],
             "brand":"Nike",
@@ -45,7 +45,7 @@
         {
             "id":4,
             "title":"Nike Air Force 1 07",
-            "price": "130.160 USD",
+            "price": 130,
             "gender":"men",
             "size":[40,41,42,43,44,45],
             "brand":"Nike",
@@ -59,7 +59,7 @@
         {
             "id":5,
             "title":"Adidas Forum Mid J",
-            "price": "140.160 USD",
+            "price": 140,
             "gender":"men",
             "size":[40,41,42,43,44,45],
             "brand":"Adidas",
@@ -73,7 +73,7 @@
         {
             "id":6,
             "title":"Champion Mid Cut Shoe Z70 Mid",
-            "price": "140.160 USD",
+            "price": 140,
             "gender":"men",
             "size":[40,41,42,43,44,45],
             "brand":"Champion",
@@ -87,7 +87,7 @@
         {
             "id":7,
             "title":"Converse Chuck 70 Plus Canvas",
-            "price": "170.160 USD",
+            "price": 170,
             "gender":"women",
             "size":[36,37,38,39,40],
             "brand":"Converse",
@@ -101,7 +101,7 @@
         {
             "id":8,
             "title":"Vans Old Skool",
-            "price": "150.160 USD",
+            "price": 150,
             "gender":"women",
             "size":[36,37,38,39,40],
             "brand":"Vans",
@@ -115,7 +115,7 @@
         {
             "id":9,
             "title":"Puma Mayze Stack Wns",
-            "price": "180.160 USD",
+            "price": 180,
             "gender":"women",
             "size":[36,37,38,39,40],
             "brand":"Vans",
@@ -129,7 +129,7 @@
         {
             "id":10,
             "title":"Puma Slipstream Wns",
-            "price": "190.160 USD",
+            "price": 190,
             "gender":"women",
             "size":[36,37,38,39,40],
             "brand":"Puma",

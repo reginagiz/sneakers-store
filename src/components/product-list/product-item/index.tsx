@@ -7,6 +7,7 @@ import st from './ProductItem.module.css'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../store/busket/busketSlice';
 import { NavLink } from 'react-router-dom';
+import { openNotification } from '../../notification/Notification';
 
 
 
@@ -19,6 +20,10 @@ type ProductItemProps = {
 const ProductItem: React.FC<ProductItemProps> = ({ sneaker }) => {
 
   const dispatch = useDispatch();
+  const addProduct = (sneaker: Sneaker) => {
+    dispatch(addToCart(sneaker))
+    openNotification(sneaker)
+  }
 
   return (
     <div className={st.card}>
@@ -32,11 +37,11 @@ const ProductItem: React.FC<ProductItemProps> = ({ sneaker }) => {
       >
         <NavLink to={`/sneakers-item/${sneaker.id}`}>
           <Meta title={sneaker.title} />
-          <div className={st.price}>{sneaker.price}</div>
+          <div className={st.price}>{sneaker.price} USD</div>
         </NavLink>
         <div className={st.button_cart} >
-          <Button onClick={() => dispatch(addToCart(sneaker))}
-          type="primary" shape="circle" icon={<ShoppingCartOutlined />} />
+          <Button onClick={() => addProduct(sneaker)}
+            type="primary" shape="circle" icon={<ShoppingCartOutlined />} />
         </div>
       </Card>
     </div>

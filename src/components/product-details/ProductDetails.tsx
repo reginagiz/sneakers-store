@@ -7,11 +7,12 @@ import { requestProducts } from '../../store/products_item'
 import { useParams } from 'react-router-dom';
 import ProductImages from './ProductImages';
 import st from './ProductDetails.module.css'
-import { Button, notification } from 'antd';
+import { Button} from 'antd';
 import { ShoppingOutlined, ExportOutlined } from '@ant-design/icons'
 import { Spin } from 'antd';
 import ProductSize from './ProductSizeChart';
 import { addToCart } from '../../store/busket/busketSlice';
+import { openNotification } from '../notification/Notification';
 
 const ProductDetails: React.FC = () => {
     const dispatch = useDispatch();
@@ -22,23 +23,9 @@ const ProductDetails: React.FC = () => {
         dispatch(requestProducts(params.id));
     }, []);
 
-    const sneak = sneaker?.[0]
-
-    const openNotification = () => {
-        notification.open({
-            message: `${sneak?.title} have been added to busket!`,
-            description:
-                <div>
-                    <div className={st.price}>{sneak?.price}</div>
-                    <div>Brand : {sneak?.brand}</div>
-                    <div>Color : {sneak?.color}</div>
-                </div>
-        });
-    };
-
     return (
         <>
-            {!sneak ? (
+            {!sneaker ? (
                 <div className={st.spin}>
                     <Spin size="large" />
                 </div>
@@ -50,30 +37,31 @@ const ProductDetails: React.FC = () => {
                                 width: '700px',
                                 height: '800px',
                             }}>
-                            {sneak?.images.map((image: string) => (
+                            {sneaker?.images.map((image: string) => (
                                 <ProductImages image={image} />
                             ))}
                         </Carousel>
                     </div>
                     <div className={st.description}>
-                        <div className={st.title}>{sneak?.title}</div>
-                        <div className={st.gender}>{sneak?.gender === 'men' ? "Men's sneakers" : "Women's sneakers"}</div>
-                        <div className={st.price}>{sneak?.price}</div>
-                        <div>Brand : {sneak?.brand}</div>
-                        <div>Color : {sneak?.color}</div>
+                        <div className={st.title}>{sneaker?.title}</div>
+                        <div className={st.gender}>{sneaker?.gender === 'men' ? "Men's sneakers" : "Women's sneakers"}</div>
+                        <div className={st.price}>{sneaker?.price} USD</div>
+                        <div>Brand : {sneaker?.brand}</div>
+                        <div>Color : {sneaker?.color}</div>
                         <div className={st.image_cont}>
                             <img
-                                src={sneak?.image} alt="Sneaker"
+                                src={sneaker?.image} alt="Sneaker"
                                 style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                             />
                         </div>
                         <div>Size:</div>
-                        <div className={st.size}>{sneak?.size.map((item: number) =>
+                        <div className={st.size}>{sneaker?.size.map((item: number) =>
                             <button className={st.size_item}>{item}</button>)}</div>
                         <ProductSize />
-                        <a onClick={() => openNotification()}>
-                            <Button type="primary" className={st.busket} onClick={() => dispatch(addToCart(sneak))}>
-                                Add to busket</Button>
+                        <a onClick={() => { openNotification(sneaker) }} >
+                            <Button type="primary" className={st.busket} onClick={() => dispatch(addToCart(sneaker))}>
+                                Add to busket
+                            </Button>
                         </a>
                         <div className={st.shipping_return}>
                             <div className={st.shipping}>
@@ -92,10 +80,11 @@ const ProductDetails: React.FC = () => {
                             </div>
                         </div>
                         <p className={st.line} />
-                        <div>{sneak?.description}</div>
+                        <div>{sneaker?.description}</div>
                     </div>
                 </div>
-            )}
+            )
+            }
         </>
     )
 };

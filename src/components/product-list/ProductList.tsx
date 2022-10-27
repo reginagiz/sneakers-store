@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import ProductItem from './product-item';
 import st from './ProductList.module.css';
 import { List } from 'antd';
 import { Sneaker } from './types';
-import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestProducts } from '../../store/all_products'
 import { selectProducts, getGender, changeGender } from '../../store/all_products/ProductsSlise'

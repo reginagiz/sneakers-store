@@ -1,21 +1,32 @@
 import { useSelector } from 'react-redux'
 import { getProducts } from '../../store/busket/busketSlice';
 import { useDispatch } from 'react-redux'
-import { Table } from 'antd';
+import { Table, Button } from 'antd';
 import { incrementQuantity, decrementQuantity, removeItem } from '../../store/busket/busketSlice'
+import { ItemInCart } from '../../store/busket/busketSlice';
+import { ColumnsType } from 'antd/lib/table';
+import st from './Cart.module.css'
+import { NavLink } from 'react-router-dom';
+import emptycart from '../../emptycart.png';
 
 const Cart = () => {
     const dispatch = useDispatch();
     const cart = useSelector(getProducts)
-    const cartItems = cart?.map((itemCart) => (itemCart.item))
 
-    const columns = [
+    const getTotal = () => {
+        let totalPrice = 0
+        cart?.forEach(item => {
+            totalPrice += item.item.price * item.quantity
+        })
+        return { totalPrice }
+    }
+    const columns: ColumnsType<ItemInCart> = [
         {
             title: '',
-            dataIndex: 'image',
+            dataIndex: ['item', 'image'],
             key: 'image',
-            render: (image: string) => (
-                <div style={{ width: 80, height: 90 }}>
+            render: (image) => (
+                <div style={{ width: 100, height: 110 }}>
                     <img
                         style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                         src={image}
@@ -26,36 +37,72 @@ const Cart = () => {
         },
         {
             title: 'Description',
-            dataIndex: 'title',
+            dataIndex: ['item', 'title'],
             key: 'title',
+            render: (item) => (
+                <div>
+                    <NavLink to={`/sneakers-item/${item.id}`}>
+                        {item.title}
+                    </NavLink>
+                </div>
+            )
         },
+
         {
             title: 'Quantity',
-            dataIndex: 'id',
-            key: 'id',
-            render: (id: number) => (
-                <div>
-                    {cart?.map((cartItem) => (
-                        <div key={id.toString()}>
-                            <button onClick={() => dispatch(decrementQuantity(id))}>-</button>
-                            <li>
-                                {cartItem.quantity}
-                            </li>
-                            <button onClick={() => dispatch(incrementQuantity(id))}>+</button>
-                        </div>
-                    ))}
+            dataIndex: 'quantity',
+            key: 'quantity',
+            render: (quantity, item) => (
+                <div key={item.item.id.toString()} className={st.quantity}>
+                    <Button onClick={() => dispatch(decrementQuantity(item.item.id))} size='small'>-</Button>
+                    <li>
+                        &nbsp;{quantity}&nbsp;
+                    </li>
+                    <Button onClick={() => dispatch(incrementQuantity(item.item.id))} size='small'>+</Button>
                 </div>
             )
         },
         {
             title: 'Price',
-            key: 'price',
-            dataIndex: 'price',
+            key: 'quantity',
+            dataIndex: 'quantity',
+            render: (quantity, item) => (
+                <div>{item.item.price * quantity} USD </div>
+            )
+        },
+        {
+            title: 'Remove',
+            key: 'action',
+            render: (_, item) => (
+                <Button
+                    onClick={() => dispatch(removeItem(item.item.id))}>
+                    X
+                </Button>
+            ),
         },
 
     ];
     return (
-        cartItems ? <Table columns={columns} dataSource={cartItems} /> : <span>No data</span>
+        cart ? <div className={st.cart}>
+            <div className={st.title}>My shopping cart</div>
+            <div className={st.table_container}>
+                <Table columns={columns} dataSource={cart} className={st.table} pagination={false} />
+                <div className={st.delivery_total}>
+                    <div className={st.delivery}>Delivery : 0 USD</div>
+                    <div className={st.total}>Total : {getTotal().totalPrice} USD</div>
+                </div>
+            </div>
+        </div>
+            : <div className={st.empty_cart}>
+                <div className={st.image_container}>
+                    <img src={emptycart} className={st.img_cart} alt="cart"></img>
+                </div>
+                <div>Unfortunately, Your cart is empty</div>
+                <div className={st.please}>Please Add Something in your Cart</div>
+                <NavLink to={'/'}>
+                    <Button type="primary">Continue Shopping</Button>
+                </NavLink>
+            </div>
     )
 }
 
