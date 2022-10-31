@@ -15,8 +15,8 @@ const Cart = () => {
 
     const getTotal = () => {
         let totalPrice = 0
-        cart?.forEach(item => {
-            totalPrice += item.item.price * item.quantity
+        cart?.forEach(itemInCart => {
+            totalPrice += itemInCart.item.price * itemInCart.quantity
         })
         return { totalPrice }
     }
@@ -37,8 +37,8 @@ const Cart = () => {
         },
         {
             title: 'Description',
-            dataIndex: ['item', 'title'],
-            key: 'title',
+            dataIndex: 'item',
+            key: 'item',
             render: (item) => (
                 <div>
                     <NavLink to={`/sneakers-item/${item.id}`}>
@@ -47,18 +47,22 @@ const Cart = () => {
                 </div>
             )
         },
-
+        {
+            title: 'Size',
+            dataIndex: 'productSize',
+            key: 'productSize',
+        },
         {
             title: 'Quantity',
             dataIndex: 'quantity',
             key: 'quantity',
             render: (quantity, item) => (
-                <div key={item.item.id.toString()} className={st.quantity}>
-                    <Button onClick={() => dispatch(decrementQuantity(item.item.id))} size='small'>-</Button>
+                <div key={item.item.id} className={st.quantity}>
+                    <Button onClick={() => dispatch(decrementQuantity({ productSize: item.productSize, id: item.item.id }))} size='small'>-</Button>
                     <li>
                         &nbsp;{quantity}&nbsp;
                     </li>
-                    <Button onClick={() => dispatch(incrementQuantity(item.item.id))} size='small'>+</Button>
+                    <Button onClick={() => dispatch(incrementQuantity({ productSize: item.productSize, id: item.item.id }))} size='small'>+</Button>
                 </div>
             )
         },
@@ -67,7 +71,7 @@ const Cart = () => {
             key: 'quantity',
             dataIndex: 'quantity',
             render: (quantity, item) => (
-                <div>{item.item.price * quantity} USD </div>
+                <div>{item.item.price * quantity} USD</div>
             )
         },
         {
@@ -75,7 +79,7 @@ const Cart = () => {
             key: 'action',
             render: (_, item) => (
                 <Button
-                    onClick={() => dispatch(removeItem(item.item.id))}>
+                    onClick={() => dispatch(removeItem({ productSize: item.productSize, id: item.item.id }))}>
                     X
                 </Button>
             ),

@@ -1,5 +1,5 @@
 import { Carousel } from 'antd';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { selectProductsItem } from '../../store/products_item/ProductsItemSlise';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import { requestProducts } from '../../store/products_item'
 import { useParams } from 'react-router-dom';
 import ProductImages from './ProductImages';
 import st from './ProductDetails.module.css'
-import { Button} from 'antd';
+import { Button } from 'antd';
 import { ShoppingOutlined, ExportOutlined } from '@ant-design/icons'
 import { Spin } from 'antd';
 import ProductSize from './ProductSizeChart';
@@ -18,10 +18,11 @@ const ProductDetails: React.FC = () => {
     const dispatch = useDispatch();
     const sneaker = useSelector(selectProductsItem);
     const params = useParams();
-
+    const [productSize, setProductSize] = useState(0);
     useEffect(() => {
         dispatch(requestProducts(params.id));
     }, []);
+
 
     return (
         <>
@@ -55,14 +56,22 @@ const ProductDetails: React.FC = () => {
                             />
                         </div>
                         <div>Size:</div>
-                        <div className={st.size}>{sneaker?.size.map((item: number) =>
-                            <button className={st.size_item}>{item}</button>)}</div>
+                        <div className={st.size}>{sneaker?.size.map((item: any) =>
+                            <button onClick={() => setProductSize(item)} className={st.size_item}>{item}</button>)}</div>
                         <ProductSize />
-                        <a onClick={() => { openNotification(sneaker) }} >
-                            <Button type="primary" className={st.busket} onClick={() => dispatch(addToCart(sneaker))}>
-                                Add to busket
-                            </Button>
-                        </a>
+                        {productSize === 0 ?
+                            (
+                                <Button type="primary" className={st.busket} disabled>
+                                    Add to busket
+                                </Button>
+                            )
+                            : (
+                                <a onClick={() => { openNotification(sneaker, productSize) }} >
+                                    <Button type="primary" className={st.busket} onClick={() => dispatch(addToCart({ sneaker, productSize }))}>
+                                        Add to busket
+                                    </Button>
+                                </a>
+                            )}
                         <div className={st.shipping_return}>
                             <div className={st.shipping}>
                                 <ShoppingOutlined style={{ fontSize: '50px' }} />

@@ -3,14 +3,15 @@ import { notification } from 'antd';
 import { Sneaker } from '../product-list/types';
 
 
-export const openNotification = (props: Sneaker) => {
+export const openNotification = (sneaker: Sneaker, productSize: number) => {
     notification.open({
-        message: `${props?.title} have been added to busket!`,
+        message: `${sneaker?.title} have been added to busket!`,
         description:
             <div>
-                <div >{props?.price} USD</div>
-                <div>Brand : {props?.brand}</div>
-                <div>Color : {props?.color}</div>
+                <div >{sneaker?.price} USD</div>
+                <div>Brand : {sneaker?.brand}</div>
+                <div>Color : {sneaker?.color}</div>
+                <div>Size : {productSize} </div>
             </div>,
         icon: <SmileOutlined style={{ color: '#108ee9' }} />,
     });

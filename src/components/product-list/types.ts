@@ -4,6 +4,7 @@ export type Sneakers = {
 };
 
 export type Sneaker = {
+  [x: string]: any;
   id: number;
   title: string;
   price: number;
