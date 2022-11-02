@@ -7,12 +7,12 @@ import { requestProducts } from '../../store/products_item'
 import { useParams } from 'react-router-dom';
 import ProductImages from './ProductImages';
 import st from './ProductDetails.module.css'
-import { Button } from 'antd';
+import { Button, Popconfirm, Spin } from 'antd';
 import { ShoppingOutlined, ExportOutlined } from '@ant-design/icons'
-import { Spin } from 'antd';
 import ProductSize from './ProductSizeChart';
 import { addToCart } from '../../store/busket/busketSlice';
 import { openNotification } from '../notification/Notification';
+
 
 const ProductDetails: React.FC = () => {
     const dispatch = useDispatch();
@@ -61,9 +61,11 @@ const ProductDetails: React.FC = () => {
                         <ProductSize />
                         {productSize === 0 ?
                             (
-                                <Button type="primary" className={st.busket} disabled>
-                                    Add to busket
-                                </Button>
+                                <Popconfirm title="Please choose your size" okText="Ok" cancelText="Cancel" className={st.popconfirm}>
+                                    <Button type="primary" className={st.busket} >
+                                        Add to busket
+                                    </Button>
+                                </Popconfirm>
                             )
                             : (
                                 <a onClick={() => { openNotification(sneaker, productSize) }} >

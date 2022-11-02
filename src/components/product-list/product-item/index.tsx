@@ -26,7 +26,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ sneaker }) => {
     <div className={st.card}>
       <Card
         hoverable
-        style={{ width: 350, height: 600 }}
+        style={{ width: 350, height: 550 }}
         cover={<div>
           <NavLink to={`/sneakers-item/${sneaker.id}`}>
             <img alt="example" src={sneaker.image} style={{ width: 350, height: 450 }} />
@@ -43,8 +43,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ sneaker }) => {
         {productSize === 0 ?
           (
             <div className={st.button_cart} >
-              <Button disabled
-                type="primary" shape="circle" icon={<ShoppingCartOutlined />} />
+             
             </div>
           )
           : (

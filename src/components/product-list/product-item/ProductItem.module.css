@@ -4,30 +4,38 @@
 }
 
 .button_cart{
-    margin-left: 270px;
-    margin-top: -60px;
+    margin-left: 260px;
+    margin-top: -40px;
 }
 .price{
-    margin-top: -30px;
+    margin-top: -20px;
     white-space: nowrap;
     color:black;
 }
-.size{
+ .size{
+    opacity: 0.1; 
     display: flex;
     flex-direction: row;
-    margin-top:0;
+    margin-top:-50px;
+    justify-content: center;
+}
+ div .size:hover{
+    opacity: 1; 
+    display: flex;
+    flex-direction: row;
+    margin-top:-50px;
     justify-content: center;
 }
 .size_item{
     font-size: small;
-    margin-top: 10px;
     margin-right: 10px;
     padding: 4px 8px;
     background-color: white;
 }
 .size_item:focus{
     background-color:#0088ff;
+    opacity: 1; 
 }
 .size_item:hover{
-    background-color:rgb(211,211,211);
+    background-color:#0088ff;
 }
