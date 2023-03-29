@@ -1,9 +1,9 @@
 import React from 'react';
 import st from './Header.module.css';
-import logo from '../../logo.png';
+import logo from '../../images/logo.png';
 import { Button } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { NavLink} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeGender } from '../../store/all_products/ProductsSlise'
 import { getProducts } from '../../store/busket/busketSlice';
@@ -12,9 +12,11 @@ import { Badge } from 'antd';
 const Header = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleGender = (gender: "women" | 'men' | '') => {
-    dispatch(changeGender(gender));
+    navigate('/')
+    dispatch(changeGender(gender))
   }
   const cart = useSelector(getProducts)
   const getTotalQuantity = () => {
@@ -36,9 +38,9 @@ const Header = () => {
       <button className={st.men} onClick={() => handleGender('men')}>For Men</button>
       <NavLink to={'/cart'}>
         <div className={st.button} >
-           <Badge count={getTotalQuantity()} showZero offset={[6, 11]}>
-          <Button type="primary" shape="circle" icon={<ShoppingCartOutlined />} size='large' />
-        </Badge>
+          <Badge count={getTotalQuantity()} showZero offset={[6, 11]}>
+            <Button type="primary" shape="circle" icon={<ShoppingCartOutlined />} size='large' />
+          </Badge>
         </div>
       </NavLink>
     </div >
