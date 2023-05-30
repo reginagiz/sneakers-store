@@ -1,41 +1,35 @@
-.card{
-    display: flex;
-    flex-direction: row;
+.card {
+  display: flex;
+  margin-bottom: 1rem;
 }
-
-.button_cart{
-    margin-left: 260px;
-    margin-top: -40px;
+.sneaker_info_container {
+  display: flex;
+  justify-content: space-between;
 }
-.price{
-    margin-top: -20px;
-    white-space: nowrap;
-    color:black;
+.sneaker_title_price {
+  display: flex;
+  flex-direction: column;
 }
- .size{
-    opacity: 0.1; 
-    display: flex;
-    flex-direction: row;
-    margin-top:-50px;
-    justify-content: center;
+.size_buttons {
+  display: flex;
+  opacity: 0.1;
+  justify-content: center;
+  margin-top: -2rem;
 }
- div .size:hover{
-    opacity: 1; 
-    display: flex;
-    flex-direction: row;
-    margin-top:-50px;
-    justify-content: center;
+.size_button {
+  width: 2.5rem;
+  margin-right: 0.4rem;
+  background-color: white;
 }
-.size_item{
-    font-size: small;
-    margin-right: 10px;
-    padding: 4px 8px;
-    background-color: white;
+.size_button:focus {
+  background-color: #0088ff;
+  opacity: 1;
 }
-.size_item:focus{
-    background-color:#0088ff;
-    opacity: 1; 
+.size_buttons:hover {
+  background-color: rgb(211, 211, 211);
+  opacity: 1;
 }
-.size_item:hover{
-    background-color:#0088ff;
+.price {
+  margin-top: 0.5rem;
+  color: #0088ff;
 }

@@ -15,6 +15,6 @@ export type Sneaker = {
   description: string;
   image: string;
   images: string[];
-  0: any;
+  0?: any;
   quantity: number;
 };
